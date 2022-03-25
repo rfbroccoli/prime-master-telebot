@@ -1,5 +1,5 @@
 const { Telegraf } = require('telegraf')
-const {isPrime} = require("./controller.js")
+const {textHandler} = require("./controller.js")
 
 const {BOT_TOKEN, WEBHOOK_URL} = process.env
 
@@ -9,21 +9,7 @@ if (!BOT_TOKEN) {
 
 const bot = new Telegraf(BOT_TOKEN)
 // Set the bot response
-bot.on('text', (ctx) => {
-  const { text, chat } = ctx.message
-    const num = parseInt(text)
-
-    if (Number.isNaN(num)) {
-        ctx.reply(`send me a number, you idiot`)
-        return
-    }
-
-    if (isPrime(num)) {
-        ctx.reply(`${text} is a prime number`)
-    } else {
-        ctx.reply(`${text} is not a prime number`)
-    }
-})
+bot.on('text', textHandler)
 
 const secretPath = `/telegraf/${bot.secretPathComponent()}`
 

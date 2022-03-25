@@ -16,4 +16,20 @@ function isPrime(num) {
     return true
 }
 
-module.exports = { isPrime }
+const textHandler = (ctx) => {
+  const { text, chat } = ctx.message
+    const num = parseInt(text)
+
+    if (Number.isNaN(num)) {
+        ctx.reply(`send me a number, you idiot`)
+        return
+    }
+
+    if (isPrime(num)) {
+        ctx.reply(`${text} is a prime number`)
+    } else {
+        ctx.reply(`${text} is not a prime number`)
+    }
+}
+
+module.exports = { textHandler }
