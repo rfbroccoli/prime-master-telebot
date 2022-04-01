@@ -1,7 +1,7 @@
-const {app} = require("./server.js")
-const {bot, secretPath} = require("./bot.js")
+const { app } = require("./server.js")
+const { bot, secretPath } = require("./bot.js")
 
-const {PORT} = process.env
+const { PORT, WEBHOOK_URL } = process.env
 
 bot.telegram.setWebhook(`${WEBHOOK_URL}${secretPath}`);
 
