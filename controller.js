@@ -16,7 +16,7 @@ function isPrime(num) {
     return true
 }
 
-const textHandler = (ctx) => {
+export const textHandler = (ctx) => {
   const { text, chat } = ctx.message
     const num = parseInt(text)
 
@@ -31,5 +31,3 @@ const textHandler = (ctx) => {
         ctx.reply(`${text} is not a prime number`)
     }
 }
-
-module.exports = { textHandler }

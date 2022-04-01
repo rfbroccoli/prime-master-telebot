@@ -1,6 +1,6 @@
-const { Telegraf } = require("telegraf");
-const { textHandler } = require("./controller.js");
-const express = require("express")
+import { Telegraf } from "telegraf";
+import { textHandler } from "./controller.js";
+import express from "express";
 
 const { PORT, BOT_TOKEN, WEBHOOK_URL } = process.env;
 
@@ -24,9 +24,12 @@ const bot = new Telegraf(BOT_TOKEN);
 // Set the bot response
 bot.on("text", textHandler);
 
-const secretPath = `telegraf/${bot.secretPathComponent()}`;
+const secretPath = `/telegraf/${bot.secretPathComponent()}`;
+
+console.log("url", `${WEBHOOK_URL}${secretPath}`)
 
 bot.telegram.setWebhook(`${WEBHOOK_URL}${secretPath}`);
+
 
 app.use(bot.webhookCallback(secretPath))
 
