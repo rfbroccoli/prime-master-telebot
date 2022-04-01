@@ -1,8 +1,20 @@
-const { app } = require("./server.js")
 const { Telegraf } = require("telegraf");
 const { textHandler } = require("./controller.js");
+const express = require("express")
 
 const { PORT, BOT_TOKEN, WEBHOOK_URL } = process.env;
+
+
+const app = express()
+
+app.get("/", (req, res) => {
+  res.send("hello world")
+})
+
+app.get("/:name", (req, res) => {
+  const { name } = req.params
+  res.send(`hello ${name}`)
+})
 
 if (!BOT_TOKEN) {
   throw new Error("BOT_TOKEN must be provided!");
